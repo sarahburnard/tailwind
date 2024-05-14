@@ -1,0 +1,29 @@
+.env
+node_modules/
+**/*/node_modules/**/*
+
+dist/
+
+.bck/
+.awcache
+
+# Configs
+src/config.yml
+
+# Re enable on production 
+package-lock.json
+yarn.lock
+
+
+.ds_store
+.DS_Store
+src/.DS_Store
+.DS_Store
+
+# Ignore yarn
+app-layer/yarn.lock
+cypress/videos/**/*.mp4
+cypress/screenshots/**/*.png
+yarn-error.log
+
+integration/cypress/videos
