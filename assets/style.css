@@ -871,16 +871,16 @@ video {
   display: none;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
 }
 
 .h-px {
   height: 1px;
-}
-
-.h-auto {
-  height: auto;
 }
 
 .w-\[this-is\\\\\] {
@@ -897,10 +897,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.max-w-xl {
-  max-width: 36rem;
 }
 
 .flex-1 {
@@ -1910,11 +1906,6 @@ video {
 
 .border-none {
   border-style: none;
-}
-
-.border-indigo-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(79 70 229 / var(--tw-border-opacity));
 }
 
 .border-red-200 {
