@@ -13,11 +13,16 @@
 
 
     
-  {%- if section.settings.title != blank -%}
-    <h2 class="text-blue-800 text-5xl font-normal font-heading leading-10">
-      {{ section.settings.title }}
+  {%- if section.settings.title_top != blank -%}
+    <h2 class="text-blue-800 text-5xl font-normal font-heading">
+      {{ section.settings.title_top }}
     </h2>
   {%- endif -%}
+  {%- if section.settings.title_bottom != blank -%}
+  <h2 class="text-blue-800 text-5xl font-normal font-heading">
+    {{ section.settings.title_bottom }}
+  </h2>
+{%- endif -%}
 
 <div class="grid grid-cols-12 grid-rows-2 gap-4">
   <div class="col-span-6 md:col-span-6 row-span-2 border border-indigo-600">1</div>
@@ -61,9 +66,14 @@
   },
   "settings": [
     {
-      "type": "richtext",
-      "id": "title",
-      "label": "t:sections.featured-collection.settings.title.label"
+      "type": "inline_richtext",
+      "id": "title_top",
+      "label": "Heading Top"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title_bottom",
+      "label": "Heading Bottom"
     },
     {
       "type": "select",
