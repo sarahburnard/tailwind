@@ -1,0 +1,53 @@
+{% comment %}
+  {% render 'product-sticker', product: product %}
+   The HTML here should match the render of stickers in SearchProductCard.tsx
+{% endcomment %}
+<ul class="stickers">
+  {% for tag in product.tags %}
+    {% assign tag_to_compare = tag | downcase %}
+    {% if tag_to_compare contains 'sticker-' %}
+      {% assign background_color = '#3D4643' %}
+      {% assign text_color = '#000000' %}
+      {% assign label = tag %}
+      {% assign tagFound = false %}
+      {% assign border = '#000000' %}
+
+      {% comment %} Let's check if there's a custom colour set for this sticker {% endcomment %}
+      {% for i in (1..20) %}
+        {% assign name_key = 'sticker_tag_' | append: i %}
+        {% assign name_to_compare = settings[name_key] | downcase %}
+
+        {% if name_to_compare == tag_to_compare %}
+          {% assign tagFound = true %}
+          {% assign color_key = 'sticker_color_' | append: i %}
+          {% assign text_color_key = 'sticker_text_color_' | append: i %}
+          {% assign label_key = 'sticker_label_' | append: i %}
+          {% assign border_key = 'sticker_border_' | append: i %}
+          {% assign background_color = settings[color_key] %}
+          {% assign text_color = settings[text_color_key] %}
+          {% assign label = settings[label_key] %}
+          {% assign border = settings[border_key] %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% if tagFound %}
+        <li class="sticker text-center" style="background-color: {{ background_color }};border-color: {{ border }};">
+          <small class="sticker-text subheading-3" style="color: {{ text_color }}">{{ label }}</small>
+        </li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% comment %} Sale sticker {% endcomment %}
+  {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+    {% assign price = product.selected_or_first_available_variant.price %}
+    {% assign compare_at_price = product.selected_or_first_available_variant.compare_at_price %}
+    {% assign discount_percentage = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price %}
+    {% if settings.sticker_sale_show_percentage %}
+      <li class="sticker text-center sticker__percentage" style="background-color: {{ settings.sticker_percentage_bgColor }};border-color: {{ settings.sticker_percentage_border }};">
+        <small class="sticker-text" style="color: {{ settings.sticker_percentage_color }}">{{ discount_percentage | round: 0 }}%</small>
+      </li>
+    {% endif %}
+  {% endif %}
+</ul>
