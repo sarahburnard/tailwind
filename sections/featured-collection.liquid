@@ -21,7 +21,7 @@
     <div class="flex-none m-auto align-middle">
       <a href="{{ section.settings.collection.url }}" 
       class="flex gap-x-2 text-orange-500 text-sm font-heading md:text-base" 
-      aria-label="{{ section.settings.collection.url }}">Shop All {% render 'svg-icons' with 'arrow' %}</a>   
+      aria-label="{{ section.settings.collection.url }}">{{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}</a>   
     </div>
   </div>
 
@@ -53,6 +53,12 @@
       "type": "richtext",
       "id": "title",
       "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "shop_all",
+      "label": "Shop Text",
+      "default": "Shop all"
     },
     {
       "type": "image_picker",
