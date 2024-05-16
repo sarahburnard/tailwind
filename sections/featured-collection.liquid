@@ -10,51 +10,35 @@
     assign more_in_collection = true
   endif
 -%}
+<section class="px-5 lg:px-[120px] py-16 lg:pb-20">
+  <div class="flex gap-x-8 pb-8 md:pb-10">
+    <div class="flex-none">
+      <h2 class="text-blue-800 text-[26px] md:text-5xl font-normal font-heading leading-normal">
+        {{ section.settings.title }}
+      </h2>
+    </div>
+    <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0">
+    <div class="flex-none m-auto align-middle">
+      <a href="{{ section.settings.collection.url }}" 
+      class="flex gap-x-2 text-orange-500 text-sm font-heading md:text-base" 
+      aria-label="{{ section.settings.collection.url }}">Shop All {% render 'svg-icons' with 'arrow' %}</a>   
+    </div>
+  </div>
 
+  <div class="grid grid-cols-12 grid-rows-2 gap-x-6 gap-y-10">
+    <div class="col-span-6 md:col-span-6 row-span-2 border border-indigo-600">1</div>
 
-    
-  {%- if section.settings.title_top != blank -%}
-    <h2 class="text-blue-800 text-5xl font-normal font-heading">
-      {{ section.settings.title_top }}
-    </h2>
-  {%- endif -%}
-  {%- if section.settings.title_bottom != blank -%}
-  <h2 class="text-blue-800 text-5xl font-normal font-heading">
-    {{ section.settings.title_bottom }}
-  </h2>
-{%- endif -%}
-
-<div class="grid grid-cols-12 grid-rows-2 gap-4">
-  <div class="col-span-6 md:col-span-6 row-span-2 border border-indigo-600">1</div>
-
-    {%- for product in section.settings.collection.products limit: products_to_display -%}
-      <product-grid class="col-span-3 md:col-span-3 row-span-1 border border-indigo-600">
-          {% render 'card-product',
-            card_product: product,
-            show_secondary_image: section.settings.show_secondary_image,
-            section_id: section.id
-          %}      
-      </product-grid>
-    {%- endfor -%}
-</div>
-
-
- 
-
-    {%- if more_in_collection -%}
-      <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        <a
-          href="{{ section.settings.collection.url }}"
-          class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
-        >
-          {{ 'sections.featured_collection.view_all' | t }}
-        </a>
-      </div>
-    {%- endif -%}
-
-
-
+      {%- for product in section.settings.collection.products limit: products_to_display -%}
+        <product-grid class="col-span-3 md:col-span-3 row-span-1 border border-indigo-600">
+            {% render 'card-product',
+              card_product: product,
+              show_secondary_image: section.settings.show_secondary_image,
+              section_id: section.id
+            %}      
+        </product-grid>
+      {%- endfor -%}
+  </div>
+</section>
 
 {% schema %}
 {
@@ -67,33 +51,13 @@
   "settings": [
     {
       "type": "inline_richtext",
-      "id": "title_top",
-      "label": "Heading Top"
+      "id": "title",
+      "label": "Heading"
     },
     {
-      "type": "inline_richtext",
-      "id": "title_bottom",
-      "label": "Heading Bottom"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        }
-      ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "type": "image_picker",
+      "id": "advert",
+      "label": "Collection Advert"
     },
     {
       "type": "collection",
