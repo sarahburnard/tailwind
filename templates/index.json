@@ -3,7 +3,8 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "<p>Discover pieces<br\/>that embrace your life<\/p>",
+        "title_top": "Discover pieces",
+        "title_bottom": "that embrace your life",
         "heading_size": "h2",
         "collection": "all",
         "show_secondary_image": true
