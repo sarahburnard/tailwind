@@ -1,15 +1,13 @@
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
-
 {%- liquid
   assign products_to_display = 4
   if section.settings.collection.all_products_count > products_to_display
     assign more_in_collection = true
   endif
 -%}
+
+
+
+
 <section class="px-5 lg:px-[120px] py-16 lg:pb-20">
   <div class="flex gap-x-8 pb-8 md:pb-10">
     <div class="flex-none">
@@ -26,19 +24,24 @@
   </div>
 
   <div class="grid grid-cols-12 grid-rows-2 gap-x-6 gap-y-10">
-    <div class="col-span-6 md:col-span-6 row-span-2 border border-indigo-600">1</div>
+    <div class="col-span-6 md:col-span-6 row-span-2 border border-indigo-600">
+      
+<img srcset="{{section.settings.advert | img_url}} 1x, /docs/images/examples/image-1@2x.jpg 2x" class="w-full h-auto max-w-xl rounded-lg" alt="image description">
+
+      1</div>
 
       {%- for product in section.settings.collection.products limit: products_to_display -%}
-        <product-grid class="col-span-3 md:col-span-3 row-span-1 border border-indigo-600">
+        <product-grid class="col-span-3 md:col-span-3 row-span-1">
             {% render 'card-product',
               card_product: product,
-              show_secondary_image: section.settings.show_secondary_image,
               section_id: section.id
             %}      
         </product-grid>
       {%- endfor -%}
   </div>
 </section>
+
+
 
 {% schema %}
 {
@@ -73,13 +76,6 @@
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header.content"
-    },
-
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
     }
   ],
   "presets": [

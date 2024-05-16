@@ -1,0 +1,27 @@
+{% assign color_variant_count = 0 %}
+
+
+
+{% assign color_option_index = -1 %}
+{% assign color_variant_count = 0 %}
+
+{%- for option in product.options -%}
+  {%- if option == 'Color' or option == 'Colour' -%}
+    {% assign color_option_index = forloop.index0 %}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if color_option_index > -1 -%}
+  {%- for variant in product.variants -%}
+    {%- if variant.options[color_option_index] != blank -%}
+      {% assign color_variant_count = color_variant_count | plus: 1 %}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if color_variant_count > 1 -%}
+<hr class="my-2 bg-indigo-100 border-0 h-px">
+<div class="text-xs md:text-sm">{{ color_variant_count }} colours available</div>
+{%- endif -%}
+
+
