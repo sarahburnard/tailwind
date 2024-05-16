@@ -4,6 +4,8 @@
       "type": "featured-collection",
       "settings": {
         "title": "<p>Discover pieces<\/p><p>that embrace your life<\/p>",
+        "shop_all": "Shop all",
+        "advert": "shopify:\/\/shop_images\/best-seller.jpg",
         "collection": "all",
         "show_secondary_image": true
       }
