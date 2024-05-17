@@ -7,7 +7,7 @@
 <section class="px-5 lg:px-[120px] py-16 lg:pb-20 font-body">
   <div class="flex gap-x-8 pb-8 md:pb-10">
     <div class="flex-none">
-      <h2 class="text-blue-800 heading-text font-normal font-heading leading-normal">
+      <h2 class="text-blue-800 heading-text font-normal font-heading leading-9 md:leading-normal">
         {{ section.settings.title }}
       </h2>
     </div>
@@ -19,10 +19,12 @@
     </div>
   </div>
 
-  <div class="grid md:grid-cols-12 md:grid-rows-2 gap-x-6 gap-y-10 pb-8 md:pb-10">
-    <a href="{{ section.settings.advert_product.url }}" class="col-span-6 md:col-span-6 row-span-2 relative min-h-56">     
+  <div class="grid md:grid-cols-12 md:grid-rows-2 gap-y-5 gap-x-2.5 md:gap-x-6 md:gap-y-10 pb-8 md:pb-10">
+    <a href="{{ section.settings.advert_product.url }}" class="col-span-6 md:col-span-6 row-span-2 relative">     
       <div style="background-image:url('{{ section.settings.advert | image_url }}')" class="card-zoom-image hidden md:block"></div>
-      <div style="background-image:url('{{ section.settings.advert_mob | image_url }}')" class="card-zoom-image md:hidden"></div>
+      <div class="w-100 md:hidden">
+        <img class="transition z-10 group-hover:z-0" src="{{ section.settings.advert_mob | image_url }}" alt="{{ section.settings.advert_product.title | escape }}">
+      </div>
     </a>
 
   {%- for product in section.settings.collection.products limit: products_to_display -%}
