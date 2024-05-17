@@ -707,6 +707,10 @@ video {
   grid-row: span 2 / span 2;
 }
 
+.grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
 .float-start {
   float: inline-start;
 }
