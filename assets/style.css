@@ -883,6 +883,10 @@ video {
   height: 1px;
 }
 
+.min-h-56 {
+  min-height: 14rem;
+}
+
 .w-\[this-is\\\\\] {
   width: this-is\\;
 }

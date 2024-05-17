@@ -20,9 +20,9 @@
   </div>
 
   <div class="grid md:grid-cols-12 md:grid-rows-2 gap-x-6 gap-y-10 pb-8 md:pb-10">
-    <a href="{{ section.settings.advert_product.url }}" class="col-span-6 md:col-span-6 row-span-2 relative ">     
+    <a href="{{ section.settings.advert_product.url }}" class="col-span-6 md:col-span-6 row-span-2 relative min-h-56">     
       <div style="background-image:url('{{ section.settings.advert | image_url }}')" class="card-zoom-image hidden md:block"></div>
-      <div style="background-image:url('{{ section.settings.advert | image_url }}')" class="card-zoom-image md:hidden"></div>
+      <div style="background-image:url('{{ section.settings.advert_mob | image_url }}')" class="card-zoom-image md:hidden"></div>
     </a>
 
   {%- for product in section.settings.collection.products limit: products_to_display -%}
