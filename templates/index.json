@@ -4,7 +4,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "<p>Discover pieces<\/p><p>that embrace your life<\/p>",
-        "collection": "all",
+        "collection": "featured-collection",
         "shop_all": "Shop all",
         "advert": "shopify:\/\/shop_images\/featured-chair.jpg",
         "advert_mob": "shopify:\/\/shop_images\/feature-mob.jpg",
