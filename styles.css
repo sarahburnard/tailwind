@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.heading-text {
+  @apply text-[26px] md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl;
+}
+
+.body-text {
+  @apply text-sm 2xl:text-base;
+}
+
+.body-subtext {
+  @apply text-xs md:text-sm
+}
+
 .card-zoom {
     @apply relative flex overflow-hidden w-full h-full;
   }

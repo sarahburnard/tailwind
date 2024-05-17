@@ -4,39 +4,44 @@
     assign more_in_collection = true
   endif
 -%}
-
-
-
-
-<section class="px-5 lg:px-[120px] py-16 lg:pb-20">
+<section class="px-5 lg:px-[120px] py-16 lg:pb-20 font-body">
   <div class="flex gap-x-8 pb-8 md:pb-10">
     <div class="flex-none">
-      <h2 class="text-blue-800 text-[26px] md:text-5xl font-normal font-heading leading-normal">
+      <h2 class="text-blue-800 heading-text font-normal font-heading leading-normal">
         {{ section.settings.title }}
       </h2>
     </div>
-    <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0">
-    <div class="flex-none m-auto align-middle">
-      <a href="{{ section.settings.collection.url }}" 
-      class="flex gap-x-2 text-orange-500 text-sm font-heading md:text-base" 
-      aria-label="{{ section.settings.collection.url }}">{{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}</a>   
+    <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0 hidden md:block">
+    <div class="flex-none m-auto align-middle hidden md:block">
+      <a href="{{ section.settings.collection.url }}" class="flex gap-x-2 text-orange-500 body-text font-heading" aria-label="{{ section.settings.collection.url  }}">
+        {{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}
+      </a>   
     </div>
   </div>
 
-  <div class="grid grid-cols-12 grid-rows-2 gap-x-6 gap-y-10">
-    <div class="col-span-6 md:col-span-6 row-span-2">
-      
-<img srcset="{{section.settings.advert | img_url: '668x'}} 1x, {{section.settings.advert | img_url: '1336x'}} 2x" class="object-cover w-full h-auto" alt="image description">
-</div>
+  <div class="grid md:grid-cols-12 md:grid-rows-2 gap-x-6 gap-y-10 pb-8 md:pb-10">
+    <a href="{{ section.settings.advert_product.url }}" class="col-span-6 md:col-span-6 row-span-2 relative ">     
+      <div style="background-image:url('{{ section.settings.advert | image_url }}')" class="card-zoom-image hidden md:block"></div>
+      <div style="background-image:url('{{ section.settings.advert | image_url }}')" class="card-zoom-image md:hidden"></div>
+    </a>
 
-      {%- for product in section.settings.collection.products limit: products_to_display -%}
-        <product-grid class="col-span-3 md:col-span-3 row-span-1">
-            {% render 'card-product',
-              card_product: product,
-              section_id: section.id
-            %}      
-        </product-grid>
-      {%- endfor -%}
+  {%- for product in section.settings.collection.products limit: products_to_display -%}
+    <product-grid class="col-span-3 md:col-span-3 row-span-1">
+        {% render 'card-product',
+          card_product: product,
+          section_id: section.id
+        %}      
+    </product-grid>
+  {%- endfor -%}
+
+  </div>
+  <div class="flex gap-x-8 pb-8 md:pb-10">
+  <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0 md:hidden">
+  <div class="flex-none m-auto align-middle md:hidden">
+    <a href="{{ section.settings.collection.url }}" class="flex gap-x-2 text-orange-500 body-text font-heading" aria-label="{{ section.settings.collection.url }}">
+      {{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}
+    </a>   
+  </div>
   </div>
 </section>
 
@@ -44,9 +49,8 @@
 
 {% schema %}
 {
-  "name": "t:sections.featured-collection.name",
+  "name": "Featured Collection",
   "tag": "section",
-  "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
@@ -57,6 +61,11 @@
       "label": "Heading"
     },
     {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
       "type": "inline_richtext",
       "id": "shop_all",
       "label": "Shop Text",
@@ -65,16 +74,19 @@
     {
       "type": "image_picker",
       "id": "advert",
-      "label": "Collection Advert"
+      "label": "Collection Advert",
+      "info": "Suggested image size: 335px x 187px"
     },
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "t:sections.featured-collection.settings.collection.label"
+      "type": "image_picker",
+      "id": "advert_mob",
+      "label": "Mobile Collection Advert",
+      "info": "Suggested image size: 668px x 881px"
     },
     {
-      "type": "header",
-      "content": "t:sections.featured-collection.settings.header.content"
+      "type": "product",
+      "id": "advert_product",
+      "label": "Product Link For Advert"
     }
   ],
   "presets": [

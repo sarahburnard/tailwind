@@ -3,10 +3,13 @@
   assign price = product.price
 -%}
   {% if compare_at_price and compare_at_price > price %}
-    <div class="text-xs md:text-sm">
-      <span class="current-price">{{ price }}</span>
-      <span class="compare-at-price">{{ compare_at_price | money }}</span>
+    <div class="body-subtext">
+      <span class="body-subtext text-pink-400 font-heading font-semibold">{{ price | money }}</span>
+      <span class="bg-pink-50 font-heading py-0.5 px-1"><span class="line-through">{{ compare_at_price | money }}</span></span>
+
+
+
     </div>
   {% else %}
-    <div class="text-xs md:text-sm">{{ price  | money }}</div>
+    <div class="body-subtext">{{ price | money }}</div>
   {% endif %}
