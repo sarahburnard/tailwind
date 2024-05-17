@@ -4,9 +4,11 @@
       "type": "featured-collection",
       "settings": {
         "title": "<p>Discover pieces<\/p><p>that embrace your life<\/p>",
+        "collection": "featured-collection",
         "shop_all": "Shop all",
         "advert": "shopify:\/\/shop_images\/featured-chair.jpg",
-        "collection": "all"
+        "advert_mob": "shopify:\/\/shop_images\/feature-mob.jpg",
+        "advert_product": "the-archived-snowboard"
       }
     }
   },
