@@ -28,7 +28,7 @@
     </a>
 
   {%- for product in section.settings.collection.products limit: products_to_display -%}
-    <product-grid class="col-span-3 md:col-span-3 row-span-1">
+    <product-grid class="col-span-3 md:col-span-3 row-span-1 relative">
         {% render 'card-product',
           card_product: product,
           section_id: section.id
