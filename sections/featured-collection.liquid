@@ -27,27 +27,25 @@
       </div>
     </a>
 
-  {%- for product in section.settings.collection.products limit: products_to_display -%}
-    <product-grid class="col-span-3 md:col-span-3 row-span-1 relative">
-        {% render 'card-product',
-          card_product: product,
-          section_id: section.id
-        %}      
-    </product-grid>
-  {%- endfor -%}
+    {%- for product in section.settings.collection.products limit: products_to_display -%}
+      <product-grid class="col-span-3 md:col-span-3 row-span-1 relative">
+          {% render 'card-product',
+            card_product: product,
+            section_id: section.id
+          %}      
+      </product-grid>
+    {%- endfor -%}
+  </div>
 
-  </div>
   <div class="flex gap-x-8 pb-8 md:pb-10">
-  <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0 md:hidden">
-  <div class="flex-none m-auto align-middle md:hidden">
-    <a href="{{ section.settings.collection.url }}" class="flex gap-x-2 text-orange-500 body-text font-heading" aria-label="{{ section.settings.collection.url }}">
-      {{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}
-    </a>   
-  </div>
+    <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0 md:hidden">
+    <div class="flex-none m-auto align-middle md:hidden">
+      <a href="{{ section.settings.collection.url }}" class="flex gap-x-2 text-orange-500 body-text font-heading" aria-label="{{ section.settings.collection.url }}">
+        {{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}
+      </a>   
+    </div>
   </div>
 </section>
-
-
 
 {% schema %}
 {

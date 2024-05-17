@@ -2,18 +2,28 @@
   <a  href="{{ card_product.url }}" class="flex">
     <div class="card-zoom group relative">
       {%- if card_product.featured_media -%}
-      <img class="transition z-10 group-hover:z-0" src="{{ card_product.featured_media | image_url }}" alt="{{ card_product.featured_media.alt | escape }}">
-        {%- if card_product.images[1] == null -%}
-            <div class="transition card-zoom-image h-full z-0 group-hover:z-10" style="background-image:url('{{ card_product.featured_media | image_url }}')"></div>
-        {%-else -%}
-          <div class="transition card-zoom-image h-full z-0 group-hover:z-10" style="background-image:url('{{ card_product.images[1] | image_url }}')"></div>  
-      {%- endif -%}
+        <img class="transition z-10 group-hover:z-0" src="{{ card_product.featured_media | image_url }}" alt="{{ card_product.featured_media.alt | escape }}">
+          {%- if card_product.images[1] == null -%}
+              <div class="transition card-zoom-image h-full z-0 group-hover:z-10" style="background-image:url('{{ card_product.featured_media | image_url }}')"></div>
+          {%-else -%}
+            <div class="transition card-zoom-image h-full z-0 group-hover:z-10" style="background-image:url('{{ card_product.images[1] | image_url }}')"></div>  
+          {%- endif -%}
+      {%- endif -%}   
     </div>
-    {% render 'product-sticker', card_product: product,  %}  
 
+    {% assign product_sticker  = card_product.metafields.custom.product_sticker %}
+      {%- if product_sticker and product_sticker.value != blank -%}
+        {%- if product_sticker.value.rounded == true -%}
+          {%- assign rounded_class = 'rounded-full' -%}
+        {%- endif -%}
+        <div class="absolute top-3 left-3 z-50">
+          <div class="h-6 px-4 py-1 {{ rounded_class }} justify-center items-center gap-2 inline-flex" style="background-color: {{ product_sticker.value.background_colour }}">
+            <div class="text-white text-sm font-normal font-body leading-none font body-subtext" style="color: {{ product_sticker.value.text_colour }}">{{ product_sticker.value.title }}</div>
+          </div>
+        </div>      
+      {%- endif -%}  
   </a>
-{%- endif -%}      
-
+   
   <div class="font-body text-blue-800 font-normal leading-none tracking-tight pt-3 md:pt-5">
       <div class="flex justify-between">
       <a href="{{ card_product.url }}" class="body-text leading-tight">{{ card_product.title | escape }}</a>
