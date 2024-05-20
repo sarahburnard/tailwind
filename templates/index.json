@@ -10,9 +10,18 @@
         "advert_mob": "shopify:\/\/shop_images\/feature-mob.jpg",
         "advert_product": "the-archived-snowboard"
       }
+    },
+    "related_products_gH4d4z": {
+      "type": "related-products",
+      "settings": {
+        "title": "",
+        "collection": "",
+        "shop_all": "Shop all"
+      }
     }
   },
   "order": [
-    "featured_collection"
+    "featured_collection",
+    "related_products_gH4d4z"
   ]
 }
