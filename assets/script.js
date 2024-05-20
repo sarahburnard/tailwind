@@ -1,27 +1,27 @@
-
- 
- 
-
-let init = false;
 let swiper = null;
 
 swiperInit();
+
+window.addEventListener('load', swiperInit);
 window.addEventListener('resize', swiperInit);
+
 function swiperInit() {
-  if(window.innerWidth<768) {
-    if(!init) {
-      init = true;
-      swiper = new Swiper('.swiper',{
-        spaceBetween: 40,
-        pagination:{
-          el:'.swiper-pagination',
-          bulletActiveClass:'dot--active',
-          bulletClass:'dot'
-        }
+    swiper = new Swiper('.swiper', {
+        loop: false,          
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      
+        slidesPerView: 1.5,      
+        breakpoints: {
+            768: {  
+                slidesPerView: 3.7
+             },
+            1024: {  
+               slidesPerView: 4.7
+            },
+          }
       });
-    }
-  } else if (init){
-    swiper.destroy();
-    init = false;
-  }
 }

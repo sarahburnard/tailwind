@@ -1,58 +1,38 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<link  rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<script src="{{ 'script.js' | asset_url }}" defer="defer"></script> 
 
-<!-- Testimonials Container -->
-<div class="swiper select-none">
-    <div class="swiper-wrapper rounded-xl mt-24 md:flex md:space-x-6">
-      <!-- Testimonial 1 -->
-      <div class="swiper-slide flex flex-col items-center p-4 space-y-4
-      rounded-xl bg-veryLightGray md:flex-1">
-        <img src="images/avatar-anisha.png" class="w-16 -mt-10 select-none" alt="avatar-anisha">
-        <h5 class="text-lg font-bold">Anisha Li</h5>
-        <p class="text-sm text-darkGrayishBlue">“Manage has supercharged our team’s workflow. The ability to
-          maintain
-          visibility on larger milestones at all times keeps everyone motivated.”</p>
-      </div>
-      <!-- Testimonial 2 -->
-      <div class="swiper-slide flex flex-col items-center p-4 space-y-4
-              rounded-xl bg-veryLightGray md:flex-1">
-        <img src="images/avatar-ali.png" class="w-16 -mt-10" alt="avatar-ali">
-        <h5 class="text-lg font-bold">Ali Bravo</h5>
-        <p class="text-sm text-darkGrayishBlue">“We have been able to cancel so many other subscriptions since using
-          Manage. There is no more cross-channel confusion and everyone is much more focused.”</p>
-      </div>
-      <!-- Testimonial 3 -->
-      <div class="swiper-slide flex flex-col items-center p-4 space-y-4
-      rounded-xl bg-veryLightGray md:flex-1">
-        <img src="images/avatar-richard.png" class="w-16 -mt-10" alt="avatar-richard">
-        <h5 class="text-lg font-bold">Richard Watts</h5>
-        <p class="text-sm text-darkGrayishBlue">“Manage allows us to provide structure and process. It keeps us
-          organized
-          and focused. I can’t stop recommending them to everyone I talk to!”</p>
-      </div>
-      <!-- Testimonial 4 -->
-      <div class="swiper-slide flex flex-col items-center p-4 space-y-4
-      rounded-xl bg-veryLightGray md:flex-1">
-        <img src="images/avatar-shanai.png" class="w-16 -mt-10" alt="avatar-shanai">
-        <h5 class="text-lg font-bold">Shanai Gough</h5>
-        <p class="text-sm text-darkGrayishBlue"> “Their software allows us to track, manage and collaborate on our
-          projects
-          from anywhere. It keeps the whole team in-sync without being intrusive.”</p>
-      </div>
+{%- liquid
+    assign products_to_display =  section.settings.items_to_show
+-%}
+
+<section class="pl-5 lg:pl-[120px] py-16 lg:pb-20 font-body">
+    <div class="flex gap-x-8 pb-8 md:pb-10 pr-5 lg:pr-[120px]">
+        <div class="flex-none">
+            <h2 class="text-blue-800 heading-text font-normal font-heading leading-9 md:leading-normal">
+            {{ section.settings.title }}
+            </h2>
+        </div>
+        <div class="max-sm:hidden flex flex-1 gap-x-8">
+            {% render 'show-all' data: section.settings.shop_all  %}
+        </div>
     </div>
-  </div>
 
-  <!-- Carrousel Buttons -->
-  <div class="swiper-pagination md:hidden"></div>
-  <!-- Button -->
-  <div class="my-16">
-    <a href="#" class="px-6 py-2 bg-brightRed text-white rounded-full
-     hover:bg-brightRedLight">
-      Get Started
-    </a>
-  </div>
-</div>
+    <div class="swiper">
+        <div class="swiper-wrapper gap-x-2.5 md:gap-x-6">      
+        {%- for product in section.settings.collection.products limit: products_to_display -%}
+            <product-grid class="swiper-slide">
+                {% render 'card-product', card_product: product %}      
+            </product-grid>
+        {%- endfor -%}
+        </div>
+    </div>
+
+    <div class="flex gap-x-8 py-8 md:py-10 md:hidden pr-5">
+        {% render 'show-all' data: section.settings.shop_all %}
+    </div>
+</section>
+
+<script src="{{ 'script.js' | asset_url }}"></script> 
 
 {% schema %}
 {
@@ -71,6 +51,15 @@
         "type": "collection",
         "id": "collection",
         "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "items_to_show",
+        "min": 5,
+        "max": 10,
+        "step": 1,
+        "label": "Total products to show",
+        "default": 6
       },
       {
         "type": "inline_richtext",

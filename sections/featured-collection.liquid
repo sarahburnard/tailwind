@@ -1,8 +1,5 @@
 {%- liquid
   assign products_to_display = 4
-  if section.settings.collection.all_products_count > products_to_display
-    assign more_in_collection = true
-  endif
 -%}
 <section class="px-5 lg:px-[120px] py-16 lg:pb-20 font-body">
   <div class="flex gap-x-8 pb-8 md:pb-10">
@@ -11,7 +8,7 @@
         {{ section.settings.title }}
       </h2>
     </div>
-    <div class="md:flex flex-1 gap-x-8 hiddden">
+    <div class="max-sm:hidden flex flex-1 gap-x-8">
       {% render 'show-all' data: section.settings.shop_all  %}
     </div>
   </div>
