@@ -11,15 +11,12 @@
         {{ section.settings.title }}
       </h2>
     </div>
-    <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0 hidden md:block">
-    <div class="flex-none m-auto align-middle hidden md:block">
-      <a href="{{ section.settings.collection.url }}" class="flex gap-x-2 text-orange-500 body-text font-heading" aria-label="{{ section.settings.collection.url  }}">
-        {{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}
-      </a>   
+    <div class="md:flex flex-1 gap-x-8 hiddden">
+      {% render 'show-all' data: section.settings.shop_all  %}
     </div>
   </div>
 
-  <div class="grid md:grid-cols-12 md:grid-rows-2 gap-y-5 gap-x-2.5 md:gap-x-6 md:gap-y-10 pb-8 md:pb-10">
+  <div class="grid grid-cols-6 md:grid-cols-12 md:grid-rows-2 gap-y-5 gap-x-2.5 md:gap-x-6 md:gap-y-10 pb-8 md:pb-10">
     <a href="{{ section.settings.advert_product.url }}" class="col-span-6 md:col-span-6 row-span-2 relative">     
       <div style="background-image:url('{{ section.settings.advert | image_url }}')" class="card-zoom-image hidden md:block"></div>
       <div class="w-100 md:hidden">
@@ -37,13 +34,8 @@
     {%- endfor -%}
   </div>
 
-  <div class="flex gap-x-8 pb-8 md:pb-10">
-    <hr class="flex-1 align-middle m-auto h-px bg-orange-500 border-0 md:hidden">
-    <div class="flex-none m-auto align-middle md:hidden">
-      <a href="{{ section.settings.collection.url }}" class="flex gap-x-2 text-orange-500 body-text font-heading" aria-label="{{ section.settings.collection.url }}">
-        {{ section.settings.shop_all }} {% render 'svg-icons' with 'arrow' %}
-      </a>   
-    </div>
+  <div class="flex gap-x-8 pb-8 md:pb-10 md:hidden">
+    {% render 'show-all' data: section.settings.shop_all %}
   </div>
 </section>
 
@@ -91,7 +83,7 @@
   ],
   "presets": [
     {
-      "name": "t:sections.featured-collection.presets.name"
+      "name": "Featured Collection"
     }
   ]
 }
