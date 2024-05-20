@@ -15,7 +15,7 @@
       "type": "related-products",
       "settings": {
         "title": "<p>Related Products<\/p>",
-        "collection": "",
+        "collection": "featured-collection",
         "items_to_show": 6,
         "shop_all": "Shop all"
       }
